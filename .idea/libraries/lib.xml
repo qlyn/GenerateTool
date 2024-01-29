@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/lib/spring-web-5.2.4.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/gson-2.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/spring-beans-5.2.4.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/GenerateToolSupport.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/spring-boot-starter-web-2.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/lib/spring-core-5.2.4.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

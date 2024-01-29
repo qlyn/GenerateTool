@@ -1,0 +1,163 @@
+<idea-plugin>
+  <id>Late_Night_Operation_Technical_Office</id>
+  <!--插件名-->
+  <name>CodeHelper</name>
+  <!--插件版本-->
+  <version>2.0</version>
+  <!--插件相关邮箱和地址-->
+  <vendor email="support@shenqinlin.com" url="http://www.shenqinlin.com">shenqinlin</vendor>
+
+  <!--插件描述-->
+  <description>
+<!--    Mouse：Please use Plugin Function in Generate Menu （Alt+Insert can see）-->
+
+<!--    Keyboard: If want to use ShortCut Key,should refer Using ShortCut Key Setting：The plugin needs to remove the shortcut key occupation from Alt1-Alt6,-->
+<!--    search for Keymap in the setting keymap, and set the eclipse shortcut key that matches the shortcut key-->
+
+<!--    Follow plugin list of function:-->
+<!--    Alt+1 ExactSameAndUniqueProperty：Enter the definition codes of the two classes in the left and right input boxes, and extract the same-name and different-name attributes of the two classes-->
+<!--    Alt+2 GenerateToXXX：Place the cursor in the current class code file to generate a method for converting the current class into another class-->
+<!--                  (enter the definition of the class currently to be converted, it will identify whether the attribute with the same name is converted,-->
+<!--                  that is, only the attribute with the same name will be converted)-->
+<!--    Alt+3 LeftCoverRight：Used when modifying comments, the cursor is placed in the current class code file, and the class definition is entered in the input box.-->
+<!--                    The comment of the same-named attribute of the class where the cursor is located will be converted into the same-named attribute comment-->
+<!--                    of another class (it will identify whether the same-named attribute is the same, that is, only the same-named attribute will be converted)-->
+
+<!--    Alt+4 GenerateMapper：Generate class mapper statement - On the left is the class definition of the incoming DO/DTO (where conditional field),、-->
+<!--                    and on the right is the class definition of the returned VO (selected field)-->
+<!--    Alt+5 GenerateEnum：Generate enumeration class - On the left, pass in the text of the enumeration property to be generated, and on the right,-->
+<!--                  pass in the order of the enumeration property delimiter, the type of code (String or Integer), and the name of the enumeration-->
+<!--                  class, separated by @ @-->
+<!--    Alt+6 GeneratePropertyByBlank：Generate Fields - Generate fields through Chinese field annotations (the left side is the Chinese annotation of the-->
+<!--                             field to be split, and the right side is the specified separator, such as \ s+, which is a space separator)-->
+<!--    Ctrl+NUMPAD31 GenerateSetEnumsName：Generate enumeration transformation - will treat properties with names containing Enum or annotations containing 0: as-->
+<!--                          enumeration properties, and generate and set enumeration transformation (enumeration properties must have more than 2,-->
+<!--                          that is, there must be 1:)-->
+<!--    Ctrl+NUMPAD32 GenerateIdToName：Generate user ID to username name conversion (usually when there is no named field in the database, attribute-->
+<!--                      comments with person/name/consultant/employee will be considered as user ID)-->
+<!--    Ctrl+NUMPAD33 GenerateConvertToLeft：Generate build and set statements to convert another class-->
+<!--                          (enter the definition of the current class to be converted, and will not identify whether the attributes of the same name are present)-->
+<!--    Ctrl+NUMPAD34 GenerateSingleLeft：Place the cursor in the current class code file and generate empty builder and set statements for the class where the cursor is located-->
+    <![CDATA[
+    Provides support for My Framework.
+    The support includes:
+    <ul>
+      <li>code completion</li>
+      <li>references</li>
+    </ul>
+    For more information visit the
+    <a href="https://example.com">project site</a>.
+    ]]>
+  </description>
+
+
+  <change-notes>
+    Here is the update prompt,HTML tags are also supported,there must be at least 40 words here, otherwise there will be red wavy lines.
+    This is a first public version！！！
+  </change-notes>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <!-- 兼容idea的最小版本 -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://www.jetbraNotificationUtilins.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- 依赖 -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <!--
+  id（必需）：指定工具窗口标题。
+  anchor 定位（必需）：指定将在其中显示“工具窗口”按钮的工具窗口栏。可能值：“left”、“right”或“bottom”
+  secondary 辅助（可选）：为true时，工具窗口按钮将显示在工具窗口栏的下部。默认值为false。
+  factoryClass（必需）：指定实现ToolWindowFactory接口的类（请参见步骤1）。
+  icon 图标（可选）：指定标识工具窗口的图标的路径（如果有）。
+  conditionClass（可选）：指定实现Condition的类。使用这个类，定义要满足的条件来显示工具窗口按钮。返回false时，工具窗口按钮不显示在工具窗口栏上。
+  -->
+  <!--     <PulginInputForm id="输入窗口" anchor="right" factoryClass="com.plugin.PulginInputForm"/>-->
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!--自定义菜单组-->
+    <!-- popup：true表示有子菜单 -->
+    <!-- id：菜单组id -->
+    <!-- text：菜单组名 -->
+<!--    <group popup="true" id="CustomizeHandleMenu" text="自定义处理">\-->
+<!--      &lt;!&ndash;group-id：添加到所在菜单的菜单id，MainMenu表示添加到最上方的主菜单里&ndash;&gt;-->
+<!--      <add-to-group group-id="MainMenu" anchor="last" />-->
+<!--    </group>-->
+    <!--自定义菜单组-->
+    <group popup="true" id="CustomizeHandleMenu" text="自定义处理">\
+      <!--group-id：添加到所在菜单的菜单id，GenerateGroup表示添加到生成菜单组-->
+      <add-to-group group-id="GenerateGroup" anchor="last" />
+    </group>
+    <!-- id：动作id -->
+    <!-- class：绑定的class名 -->
+    <!-- text：菜单名 -->
+    <!-- description：菜单描述 -->
+<!--    <action id="first" class="com.plugin.FirstAction" text="FirstAction" description="This is firstAction">-->
+<!--      &lt;!&ndash; group-id：设置到哪个ModuleDescriptor菜单下，此时为Tools菜单下 &ndash;&gt;-->
+<!--      &lt;!&ndash; anchor：菜单顺序 &ndash;&gt;-->
+<!--      <add-to-group group-id="ToolsMenu" anchor="first"/>-->
+<!--      &lt;!&ndash; keystroke：快捷键 &ndash;&gt;-->
+<!--      <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD2"/>-->
+<!--    </action>-->
+<!--    <action id="SecondAction" class="com.plugin.SecondAction" text="生成枚举"-->
+<!--            description="左边传入要生成的枚举属性文本，右边传入依照顺序是枚举属性分隔符、code的类型（是String还是Integer）、枚举类名，以@@分隔">-->
+<!--      <add-to-group group-id="GenerateGroup" anchor="last"/>-->
+<!--      <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD5"/>-->
+<!--    </action>-->
+    <action id="ExactSameAndUniqueProperty" class="com.plugin.action.ExactSameAndUniqueProperty" text="ExactSameAndUniqueProperty"
+            description="ExactSameAndUniqueProperty(提取出同名和不同名字段)">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 1"/>
+    </action>
+    <action id="GenerateToXXX" class="com.plugin.action.GenerateToXXX" text="GenerateToXXX"
+            description="GenerateToXXX(光标放在当前类代码文件里，生成当前类转化另一个类的方法（输入当前要转换的类的定义，会识别是否同名属性即只转化同名属性）)">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 2"/>
+    </action>
+    <action id="LeftCoverRight" class="com.plugin.action.LeftCoverRight" text="LeftCoverRight"
+            description="在修改注释时使用，光标放在当前类代码文件里，输入框输入类定义，光标所在类的同名属性的注释会转化为另一个类的同名属性注释（会识别是否同名属性即只转化同名属性的注释）">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 3"/>
+    </action>
+    <action id="GenerateMapper" class="com.plugin.action.GenerateMapper" text="GenerateMapper"
+            description="生成类的mapper语句语句---左边是传入的DO/DTO(where条件的字段)的类定义，右边是返回的VO(select后的字段)的类定义">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 4"/>
+    </action>
+    <action id="GenerateEnum" class="com.plugin.action.GenerateEnum" text="GenerateEnum"
+            description="生成枚举类---左边传入要生成的枚举属性文本，右边传入依照顺序是枚举属性分隔符、code的类型（是String还是Integer）、枚举类名，以@@分隔">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 5"/>
+    </action>
+    <action id="GeneratePropertyByBlank" class="com.plugin.action.GeneratePropertyByBlank" text="GeneratePropertyByBlank"
+            description="生成字段---通过中文字段注释生成字段(左边是传入的待分割的字段中文注释，右边是指定的分割符如\s+为空格分隔符)">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt 6"/>
+    </action>
+    <action id="GenerateSetEnumsName" class="com.plugin.action.GenerateSetEnumsName" text="GenerateSetEnumsName"
+            description="生成枚举转换---会将名字包含Enum，或注解包括0:的属性看为枚举属性，生成设置枚举转换(枚举属性必定超过2个，即一定有1:)">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD1"/>
+    </action>
+    <action id="GenerateIdToName" class="com.plugin.action.GenerateIdToName" text="GenerateIdToName"
+            description="生成用户id到用户名name转换(一般是数据库没有存名字的字段，属性注释带人/名/顾问/员工会被看为用户id)">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD2"/>
+    </action>
+    <action id="GenerateConvertToLeft" class="com.plugin.action.GenerateConvertToLeft" text="GenerateConvertToLeft"
+            description="光标放在当前类代码文件里，生成要转换另一个类的的build和set语句语句（输入当前要转换的类的定义，以要生成的类的属性为基准，同时不会识别是否同名属性）">
+      <add-to-group group-id="CustomizeHandleMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD3"/>
+    </action>
+    <action id="GenerateSingleLeft" class="com.plugin.action.GenerateSingleLeft" text="GenerateSingleLeft"
+            description="光标放在当前类代码文件里，生成光标所在类的空的buidler和set语句">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl NUMPAD4"/>
+    </action>
+  </actions>
+
+</idea-plugin>
